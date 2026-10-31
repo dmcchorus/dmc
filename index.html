@@ -1,0 +1,664 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>DMC Chorus</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
+<style>
+/* Layout: sticky maroon nav, full-bleed hero with a centered DMC wordmark block, alternating cream and maroon bands (About, Journey, Music, Services, Gallery), a second full-gallery view on #all-photos, and a maroon contact footer. Single committed look: maroon, metallic gold sampled from the logo wordmark, parchment. */
+:root {
+  --maroon-900: #2d060b;
+  --maroon-800: #3c080e;
+  --maroon-700: #571019;
+  --gold-100: #ffefbd;
+  --gold-300: #eaca81;
+  --gold-500: #cf9a45;
+  --gold-700: #935f1f;
+  --gold-grad: linear-gradient(180deg, #f1d58e 0%, #eaca81 9%, #d6b26b 17%, #c19955 25%, #ad813f 34%, #996928 43%, #935f1f 51%, #a36d28 60%, #b37c32 68%, #c38a3b 77%, #d39845 85%, #e3a64e 100%);
+  --gold-grad-soft: linear-gradient(180deg, #f6dd9c 0%, #e7c179 55%, #cf9a45 100%);
+  --gold-grad-pale: linear-gradient(180deg, #fff3c8 0%, #f1deac 55%, #d9b974 100%);
+  --cream: #fbf7f1;
+  --ink: #46101a;
+  --ink-soft: #6a3a40;
+  --on-dark: #f6ece0;
+  --on-dark-soft: #d9c5b6;
+  --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --f-label: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --f-script: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --f-body: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --header-h: 64px;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px) + 8px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body { background: var(--cream); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.7; margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--maroon-900); z-index: 30; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold-300); outline-offset: 3px; }
+.wrap { max-width: 1120px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.gold-text { background: var(--gold-grad-soft); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+/* Ornamental divider: tapering rules with a scroll-and-diamond centre piece */
+.div { display: flex; align-items: center; width: 100%; max-width: var(--w, 340px); color: var(--gold-500); }
+.div i { flex: 1; min-width: 0; height: 1px; background: linear-gradient(90deg, transparent, currentColor 45%); }
+.div i:last-child { background: linear-gradient(270deg, transparent, currentColor 45%); }
+.div svg { flex: none; height: var(--oh, 28px); aspect-ratio: 132 / 28; width: auto; }
+
+/* Header */
+.site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--maroon-900); border-bottom: 1px solid rgba(207,154,69,.35); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: var(--header-h); gap: 1rem; position: relative; }
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--gold-700), var(--gold-300)); }
+.brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; font-family: var(--f-label); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .95rem; }
+.brand img { width: 40px; height: 40px; border-radius: 50%; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 1.6rem; }
+.nav a { font-family: var(--f-label); text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; font-weight: 500; text-decoration: none; color: var(--on-dark); padding-block: .45rem; background: linear-gradient(var(--gold-500), var(--gold-500)) 0 100% / 0 1px no-repeat; transition: color .3s, background-size .5s var(--ease); }
+.nav a:hover { color: var(--gold-300); background-size: 100% 1px; }
+.menu-btn { display: none; background: none; border: 1px solid rgba(207,154,69,.5); color: var(--gold-300); width: 44px; height: 44px; border-radius: 4px; cursor: pointer; align-items: center; justify-content: center; }
+.menu-btn svg { width: 22px; height: 22px; }
+@media (max-width: 900px) {
+  .menu-btn { display: inline-flex; }
+  .nav { position: absolute; left: 0; right: 0; top: 100%; background: var(--maroon-900); border-bottom: 1px solid rgba(207,154,69,.35); display: none; padding: .5rem max(16px, env(safe-area-inset-left, 0px)) 1rem; }
+  .nav.open { display: block; }
+  .nav ul { flex-direction: column; gap: 0; }
+  .nav a { display: block; padding: .8rem 0; border-bottom: 1px solid rgba(207,154,69,.15); background: none; }
+}
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: .6rem; padding: .85rem 1.4rem; border: 1px solid var(--gold-500); border-radius: 4px; color: var(--gold-300); background: linear-gradient(var(--gold-500), var(--gold-500)) no-repeat 0 0 / 0 100%, rgba(87,16,25,.65); font: 600 .76rem/1 var(--f-body); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background-size .55s var(--ease), color .35s; }
+.btn:hover { background-size: 100% 100%, auto; color: var(--maroon-900); }
+.btn span { transition: transform .35s var(--ease); }
+.btn:hover span { transform: translateX(5px); }
+.btn-dark { color: var(--maroon-700); border-color: var(--maroon-700); background: linear-gradient(var(--maroon-700), var(--maroon-700)) no-repeat 0 0 / 0 100%, transparent; }
+.btn-dark:hover { color: var(--gold-300); }
+
+/* Wordmark: DMC / CHORUS / divider / tagline, all centred on the width of DMC */
+.wordmark { --dmc: clamp(5rem, 19vw, 10.5rem); --cr: .17; --tr: .21; display: grid; width: fit-content; justify-items: center; text-align: center; }
+.wordmark h1 { margin: 0; display: grid; justify-items: center; line-height: 1; }
+.wm-dmc { display: block; font-family: var(--f-display); font-weight: 700; font-size: var(--dmc); line-height: .95; letter-spacing: .01em; color: var(--gold-500); background-image: var(--gold-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.wm-chorus { display: flex; justify-content: space-between; width: 0; min-width: 100%; padding-inline: calc(var(--dmc) * .035); margin-top: calc(var(--dmc) * .07); font-family: var(--f-label); font-weight: 500; text-transform: uppercase; font-size: calc(var(--dmc) * var(--cr)); line-height: 1; color: var(--on-dark); }
+.wm-chorus i { font-style: normal; }
+.wordmark > .div { width: 0; min-width: 100%; max-width: none; margin-block: calc(var(--dmc) * .1) calc(var(--dmc) * .06); --oh: calc(var(--dmc) * .14); }
+.wm-tag { width: max-content; min-width: 100%; white-space: nowrap; margin: 0; font-family: var(--f-script); font-style: italic; font-weight: 600; font-size: calc(var(--dmc) * var(--tr)); letter-spacing: .06em; line-height: 1.15; background: var(--gold-grad-pale); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--gold-100); }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; background: var(--maroon-800); isolation: isolate; }
+.hero-media { position: absolute; top: -10%; right: 0; height: 120%; width: 72%; z-index: -2; will-change: transform; transform: translate3d(0, var(--py, 0px), 0); }
+.hero-img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 30%; transform-origin: 70% 40%; animation: drift 28s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: scale(1); } to { transform: scale(1.07) translateX(-1.5%); } }
+.hero::before { content: ""; position: absolute; inset: -20%; z-index: -1; background: radial-gradient(38% 38% at 72% 28%, rgba(207,154,69,.2), transparent 70%), radial-gradient(34% 34% at 18% 82%, rgba(147,95,31,.18), transparent 70%); animation: glow 20s ease-in-out infinite alternate; }
+@keyframes glow { from { transform: translate3d(-3%, 2%, 0) scale(1); } to { transform: translate3d(4%, -3%, 0) scale(1.12); } }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--maroon-800) 0%, var(--maroon-800) 26%, rgba(60,8,14,.78) 48%, rgba(60,8,14,.15) 100%), linear-gradient(0deg, rgba(45,6,11,.7), transparent 30%); }
+.notes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.notes svg { position: absolute; bottom: -40px; width: 24px; height: 24px; color: var(--gold-300); opacity: 0; animation: floatup 20s linear infinite; }
+.notes .n1 { left: 56%; } .notes .n2 { left: 72%; animation-delay: 6s; width: 18px; height: 18px; animation-duration: 24s; }
+.notes .n3 { left: 86%; animation-delay: 12s; } .notes .n4 { left: 64%; animation-delay: 16s; width: 20px; height: 20px; animation-duration: 22s; }
+@keyframes floatup { 0% { transform: translateY(0) rotate(-8deg); opacity: 0; } 15% { opacity: .4; } 85% { opacity: .18; } 100% { transform: translateY(-640px) rotate(10deg); opacity: 0; } }
+@media (max-width: 760px) { .notes .n1 { left: 10%; } .notes .n2 { left: 30%; } .notes .n3 { left: 78%; } .notes .n4 { left: 55%; } }
+.hero-inner { position: relative; padding-block: clamp(2rem, 5vw, 3.5rem) clamp(3rem, 7vw, 5.5rem); }
+.hero-logo { width: 58px; height: 58px; border-radius: 50%; margin-bottom: 1rem; animation: fadeup 1.1s var(--ease) .05s both; }
+.hero .wm-dmc { background-image: linear-gradient(105deg, transparent 42%, rgba(255,247,215,.9) 50%, transparent 58%), var(--gold-grad); background-size: 260% 100%, 100% 100%; background-repeat: no-repeat; background-position: 160% 0, 0 0; animation: wipe 1.4s var(--ease) .05s both, gleam 9s ease-in-out 2.2s infinite; }
+@keyframes wipe { from { clip-path: inset(0 92% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes gleam { 0%, 62% { background-position: 160% 0, 0 0; } 100% { background-position: -60% 0, 0 0; } }
+.hero .wm-chorus i { animation: letter 1.3s var(--ease) calc(.5s + var(--k) * .09s) both; }
+@keyframes letter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.hero .wordmark > .div { animation: orn 1.5s var(--ease) .85s both; }
+@keyframes orn { from { clip-path: inset(0 50% 0 50%); opacity: 0; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+.hero .wm-tag { animation: fadeup 1.2s var(--ease) 1s both; }
+.hero-copy { max-width: 400px; margin: 1.6rem 0 1.8rem; color: var(--on-dark); animation: fadeup 1.2s var(--ease) 1.15s both; }
+.hero-copy strong { display: block; font-weight: 700; margin-bottom: .2rem; }
+.hero-copy em { color: var(--on-dark-soft); }
+.hero-inner > .btn { animation: fadeup 1.2s var(--ease) 1.3s both; }
+@keyframes fadeup { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media (max-width: 760px) {
+  .hero-media { width: 100%; opacity: .5; }
+  .hero-img { object-position: 60% 20%; }
+  .hero::after { background: linear-gradient(180deg, rgba(60,8,14,.55) 0%, rgba(60,8,14,.85) 60%, var(--maroon-800) 100%); }
+}
+
+/* Section scaffolding */
+.band { padding-block: clamp(3rem, 7vw, 5rem); }
+.band-dark { background: var(--maroon-800); color: var(--on-dark); }
+.sec-title { font-family: var(--f-label); font-weight: 600; text-transform: uppercase; letter-spacing: .14em; font-size: clamp(1.35rem, 3.2vw, 1.9rem); text-align: center; margin: 0; transition: letter-spacing 1.6s var(--ease), opacity 1.1s ease; }
+.sec-head { display: grid; justify-items: center; gap: .7rem; margin-bottom: 2.4rem; }
+.sec-head .div { --w: 300px; transition: clip-path 1.4s var(--ease) .15s, opacity 1s ease .15s; }
+.sec-head.rv.pre { opacity: 1; transform: none; }
+.sec-head.pre .sec-title { letter-spacing: .36em; opacity: 0; }
+.sec-head.pre .div { clip-path: inset(0 50% 0 50%); opacity: 0; }
+
+/* Reveal on scroll */
+.rv { transition: opacity 1.1s ease, transform 1.1s var(--ease); transition-delay: calc(var(--i, 0) * 110ms); }
+.rv.pre { opacity: .2; transform: translateY(30px); }
+.mk.pre { opacity: 1; transform: none; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 5vw, 3.5rem); align-items: center; }
+.about-grid > * { min-width: 0; }
+.eyebrow { font-family: var(--f-label); text-transform: uppercase; letter-spacing: .12em; font-size: 1.05rem; font-weight: 500; margin: 0; }
+.about h2 { font-family: var(--f-display); font-weight: 700; letter-spacing: -.02em; font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1.05; margin: .1rem 0 .8rem; color: var(--maroon-700); }
+.about .div { --w: 300px; margin-bottom: 1.3rem; }
+.about p { margin: 0 0 1.1rem; color: var(--ink); max-width: 60ch; }
+.frame { position: relative; overflow: hidden; }
+.frame-in { background: linear-gradient(135deg, var(--gold-300), var(--gold-700)); padding: 4px;
+  -webkit-mask: radial-gradient(circle at 0 0, #0000 19px, #000 20px), radial-gradient(circle at 100% 0, #0000 19px, #000 20px), radial-gradient(circle at 0 100%, #0000 19px, #000 20px), radial-gradient(circle at 100% 100%, #0000 19px, #000 20px);
+  -webkit-mask-composite: source-in;
+  mask: radial-gradient(circle at 0 0, #0000 19px, #000 20px), radial-gradient(circle at 100% 0, #0000 19px, #000 20px), radial-gradient(circle at 0 100%, #0000 19px, #000 20px), radial-gradient(circle at 100% 100%, #0000 19px, #000 20px);
+  mask-composite: intersect; overflow: hidden; }
+.frame-in img { width: 100%; height: auto; aspect-ratio: 673 / 400; object-fit: cover; transition: clip-path 1.5s var(--ease), transform 2s var(--ease); transition-delay: calc(var(--i, 0) * 110ms); }
+.frame.pre img { clip-path: inset(0 0 100% 0); transform: scale(1.14); }
+.frame .c { position: absolute; width: 40px; height: 40px; border: 3px solid var(--gold-500); border-radius: 50%; }
+.frame .tl { top: -20px; left: -20px; } .frame .tr { top: -20px; right: -20px; } .frame .bl { bottom: -20px; left: -20px; } .frame .br { bottom: -20px; right: -20px; }
+@media (max-width: 760px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about .eyebrow, .about h2 { text-align: center; }
+  .about .div { margin-inline: auto; }
+}
+
+/* Journey */
+.journey-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem 1.2rem; }
+.journey-grid li { text-align: center; display: grid; justify-items: center; align-content: start; gap: .7rem; min-width: 0; }
+.badge { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; border: 1px solid rgba(207,154,69,.55); background: radial-gradient(circle at 30% 25%, rgba(234,202,129,.16), rgba(234,202,129,.02) 70%); transition: background-color .4s, border-color .4s, transform .5s var(--ease), box-shadow .5s; }
+.badge svg { width: 40px; height: 40px; fill: none; stroke: var(--gold-300); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: stroke .4s; }
+.badge svg * { stroke-dasharray: 1.02; stroke-dashoffset: 0; transition: stroke-dashoffset 1.9s var(--ease); transition-delay: calc(var(--i, 0) * 110ms + .25s); }
+.journey-grid li.pre .badge svg * { stroke-dashoffset: 1.02; }
+.journey-grid li:hover .badge { background-color: var(--gold-500); border-color: var(--gold-300); transform: translateY(-5px); box-shadow: 0 10px 26px rgba(0,0,0,.35), 0 0 0 6px rgba(207,154,69,.12); }
+.journey-grid li:hover .badge svg { stroke: var(--maroon-900); }
+.journey-grid h3 { font-family: var(--f-label); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-size: .86rem; line-height: 1.35; margin: 0; }
+.journey-grid p { margin: 0; font-size: .82rem; line-height: 1.55; color: var(--on-dark-soft); max-width: 24ch; }
+@media (max-width: 960px) { .journey-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .journey-grid { grid-template-columns: repeat(2, 1fr); } .journey-grid li:last-child { grid-column: 1 / -1; } }
+
+/* Music */
+.music { background: var(--cream); position: relative; overflow: hidden; }
+.mnotes { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.mnotes .note { position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s); color: var(--gold-700); opacity: var(--o); animation: nfloat var(--d) ease-in-out var(--dl) infinite; will-change: transform; transform: rotate(var(--r)); }
+@keyframes nfloat {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--r)); }
+  50% { transform: translate3d(var(--dx, 14px), -28px, 0) rotate(calc(var(--r) * -1)); }
+}
+.music .wrap { position: relative; z-index: 1; }
+.music .sec-title, .gallery .sec-title, .photos-page .sec-title { color: var(--maroon-700); }
+.music-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.2rem, 4vw, 2.6rem); max-width: 920px; margin-inline: auto; }
+.track { display: grid; gap: .9rem; min-width: 0; }
+.track-media { position: relative; aspect-ratio: 16 / 9; border-radius: 6px; border: 2px solid var(--gold-500); overflow: hidden; background: var(--maroon-900); display: grid; place-items: center; text-decoration: none; }
+.track-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; transition: transform 1.2s var(--ease); }
+.track-media:hover .track-photo, .track-media:focus-visible .track-photo { transform: scale(1.06); }
+.track-media::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(45,6,11,.9), rgba(45,6,11,.3) 60%, rgba(45,6,11,.5)); }
+.track-media .play { position: relative; z-index: 3; width: 62px; height: 62px; border-radius: 50%; background: var(--gold-500); color: var(--maroon-900); display: grid; place-items: center; transition: transform .4s var(--ease); }
+.track-media:hover .play { transform: scale(1.08); }
+.track-media .play svg { width: 26px; height: 26px; fill: currentColor; margin-left: 3px; }
+.track-media .play::before { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 1px solid var(--gold-300); opacity: 0; animation: ring 3s ease-out infinite; }
+@keyframes ring { 0% { transform: scale(.85); opacity: .6; } 100% { transform: scale(1.5); opacity: 0; } }
+.track-media .tag { position: absolute; z-index: 3; left: .8rem; bottom: .7rem; font-family: var(--f-label); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-300); }
+.eq { position: absolute; z-index: 3; right: .9rem; bottom: .8rem; height: 22px; display: flex; align-items: flex-end; gap: 3px; }
+.eq i { display: block; width: 4px; height: 30%; background: var(--gold-300); border-radius: 1px; }
+.track-media:hover .eq i, .track-media:focus-visible .eq i { animation: bar .9s ease-in-out infinite; }
+.eq i:nth-child(2) { animation-delay: .15s !important; } .eq i:nth-child(3) { animation-delay: .3s !important; } .eq i:nth-child(4) { animation-delay: .08s !important; }
+@keyframes bar { 0%, 100% { height: 25%; } 50% { height: 100%; } }
+.track h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.25rem; line-height: 1.3; margin: 0; color: var(--maroon-700); text-wrap: balance; }
+.credits { margin: 0; font-size: .8rem; line-height: 1.6; color: var(--ink-soft); }
+.credits b { font-weight: 700; color: var(--ink); }
+.link-gold { font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--maroon-700); text-decoration: none; justify-self: start; padding-bottom: 3px; background: linear-gradient(var(--gold-500), var(--gold-500)) 0 100% / 100% 1px no-repeat; transition: background-size .5s var(--ease), color .3s; }
+.link-gold:hover { color: var(--gold-700); background-size: 40% 1px; }
+@media (max-width: 680px) { .music-grid { grid-template-columns: 1fr; } .mnotes .note:nth-child(n+9) { display: none; } }
+
+/* Services */
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 3vw, 1.8rem); max-width: 960px; margin-inline: auto; }
+.service { min-width: 0; display: grid; gap: .8rem; align-content: start; text-align: center; }
+.service .ph { overflow: hidden; border: 2px solid var(--gold-500); border-radius: 6px; transition: transform .6s var(--ease), box-shadow .6s; }
+.service img { width: 100%; aspect-ratio: 323 / 171; object-fit: cover; transition: clip-path 1.4s var(--ease), transform 1.8s var(--ease); transition-delay: calc(var(--i, 0) * 110ms); }
+.service.pre img { clip-path: inset(0 0 100% 0); transform: scale(1.14); }
+.service:hover .ph { transform: translateY(-5px); box-shadow: 0 16px 30px rgba(0,0,0,.4); }
+.service h3 { font-family: var(--f-label); font-weight: 500; text-transform: uppercase; letter-spacing: .1em; font-size: 1rem; margin: 0; }
+.service p { margin: 0; font-size: .86rem; line-height: 1.6; color: var(--on-dark-soft); }
+.services-cta { margin-top: 2.4rem; text-align: center; }
+@media (max-width: 760px) { .service-grid { grid-template-columns: 1fr; max-width: 460px; } }
+
+/* Gallery (home preview and full view) */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.shot { appearance: none; font: inherit; color: inherit; padding: 0; margin: 0; overflow: hidden; border: 2px solid var(--gold-500); border-radius: 6px; min-width: 0; background: var(--maroon-800); cursor: zoom-in; display: block; position: relative; }
+.shot img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 1s var(--ease), clip-path 1.3s var(--ease); transition-delay: 0s, calc(var(--i, 0) * 110ms); }
+.shot.pre img { clip-path: inset(0 0 100% 0); transform: scale(1.12); }
+.shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(45,6,11,.5), transparent 50%); opacity: 0; transition: opacity .4s; }
+.shot:hover img, .shot:focus-visible img { transform: scale(1.06); }
+.shot:hover::after, .shot:focus-visible::after { opacity: 1; }
+.more { text-align: center; margin-top: 2.2rem; }
+@media (max-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: .7rem; } }
+
+.photos-page { min-height: 70vh; }
+.back { display: inline-flex; gap: .5rem; align-items: center; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--maroon-700); text-decoration: none; margin-bottom: 1.6rem; padding-bottom: 3px; background: linear-gradient(var(--gold-500), var(--gold-500)) 0 100% / 100% 1px no-repeat; transition: background-size .5s var(--ease); }
+.back:hover { background-size: 40% 1px; }
+.masonry { column-width: 290px; column-gap: 1rem; }
+.masonry .shot { width: 100%; margin: 0 0 1rem; break-inside: avoid; }
+.masonry .shot img { aspect-ratio: auto; }
+.view-in { animation: viewin .9s var(--ease) both; }
+@keyframes viewin { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; background: rgba(20,3,6,.94);
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(1rem + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); animation: fadein .35s ease both; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.lb figure { margin: 0; display: grid; gap: .8rem; justify-items: center; max-width: 100%; }
+.lb img { max-width: 100%; max-height: 82vh; object-fit: contain; border: 2px solid var(--gold-500); border-radius: 4px; background: var(--maroon-900); }
+.lb-count { font-family: var(--f-label); letter-spacing: .14em; color: var(--gold-300); font-size: .78rem; }
+.lb button { position: absolute; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(207,154,69,.7); background: rgba(45,6,11,.7); color: var(--gold-300); font-size: 1.6rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background-color .3s, color .3s; }
+.lb button:hover { background: var(--gold-500); color: var(--maroon-900); }
+.lb .lb-x { top: calc(.8rem + env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
+.lb .lb-prev { left: max(12px, env(safe-area-inset-left, 0px)); top: 50%; transform: translateY(-50%); }
+.lb .lb-next { right: max(12px, env(safe-area-inset-right, 0px)); top: 50%; transform: translateY(-50%); }
+@media (max-width: 640px) { .lb .lb-prev, .lb .lb-next { top: auto; bottom: calc(.8rem + env(safe-area-inset-bottom, 0px)); transform: none; } .lb img { max-height: 72vh; } }
+
+/* Footer */
+.site-footer { background: var(--maroon-900); color: var(--on-dark); padding-block: clamp(2.6rem, 6vw, 4rem) 1.6rem; }
+.foot-grid { display: grid; grid-template-columns: minmax(300px, 1.5fr) .8fr 1.2fr 1.3fr; gap: 2rem; align-items: start; }
+.foot-grid > * { min-width: 0; }
+.foot-brand { display: flex; align-items: center; gap: 1.1rem; }
+.foot-brand > img { width: 104px; height: 104px; border-radius: 50%; flex: none; }
+.wordmark.sm { --dmc: 4.2rem; --cr: .19; --tr: .23; }
+.wordmark.sm .wm-chorus { margin-top: .25rem; }
+.wordmark.sm > .div { --oh: 15px; margin-block: .45rem .3rem; }
+.wordmark.sm > .div:last-child { margin-block: .3rem 0; }
+.foot-col h4 { font-family: var(--f-label); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; font-size: .85rem; margin: 0 0 .8rem; }
+.foot-col p { margin: 0 0 1rem; font-size: .84rem; line-height: 1.6; color: var(--on-dark-soft); }
+.foot-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .25rem; }
+.foot-col li a { font-size: .86rem; text-decoration: none; color: var(--on-dark); transition: color .3s; }
+.foot-col li a:hover { color: var(--gold-300); }
+.addr { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: .9rem; }
+.addr code { font-family: var(--f-body); font-size: .84rem; color: var(--on-dark); background: rgba(246,236,224,.08); padding: .35rem .6rem; border-radius: 4px; overflow-wrap: anywhere; user-select: all; }
+.copy { background: none; border: 1px solid rgba(207,154,69,.55); color: var(--gold-300); border-radius: 4px; padding: .38rem .7rem; font: 600 .7rem/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: background-color .3s; }
+.copy:hover { background: rgba(207,154,69,.15); }
+.foot-bottom { margin-top: 2.4rem; display: grid; justify-items: center; gap: .9rem; text-align: center; font-size: .76rem; color: var(--on-dark-soft); letter-spacing: .04em; }
+.foot-bottom .div { --w: 100%; --oh: 20px; }
+.foot-bottom p { margin: 0; }
+@media (max-width: 1040px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .foot-grid { grid-template-columns: 1fr; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="orn-c" viewBox="0 0 132 28">
+    <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M66 3 L77 14 L66 25 L55 14Z"/>
+      <path d="M0 14 H14 C22 14 25 7 32 7 C37 7 38 12 34.5 12.4 C32.6 12.6 32.2 10.4 33.6 9.9"/>
+      <path d="M14 14 C22 14 25 21 32 21 C37 21 38 16 34.5 15.6 C32.6 15.4 32.2 17.6 33.6 18.1"/>
+      <path d="M132 14 H118 C110 14 107 7 100 7 C95 7 94 12 97.5 12.4 C99.4 12.6 99.8 10.4 98.4 9.9"/>
+      <path d="M118 14 C110 14 107 21 100 21 C95 21 94 16 97.5 15.6 C99.4 15.4 99.8 17.6 98.4 18.1"/>
+    </g>
+    <path fill="currentColor" d="M66 8.5 L71.5 14 L66 19.5 L60.5 14Z"/>
+    <circle fill="currentColor" cx="46" cy="14" r="2"/><circle fill="currentColor" cx="86" cy="14" r="2"/>
+    <path fill="currentColor" d="M52 14 L48.6 11.6 V16.4Z"/><path fill="currentColor" d="M80 14 L83.4 11.6 V16.4Z"/>
+  </symbol>
+  <symbol id="note" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></symbol>
+  <symbol id="n-eighth" viewBox="0 0 48 48"><ellipse cx="16" cy="37" rx="8.5" ry="6" transform="rotate(-22 16 37)" fill="currentColor"/><rect x="22.5" y="7" width="2.6" height="31" fill="currentColor"/><path d="M25 7 C26 17 38 18 38 31 C35 25 28 24 25 22Z" fill="currentColor"/></symbol>
+  <symbol id="n-quarter" viewBox="0 0 48 48"><ellipse cx="16" cy="37" rx="8.5" ry="6" transform="rotate(-22 16 37)" fill="currentColor"/><rect x="22.5" y="6" width="2.6" height="32" fill="currentColor"/></symbol>
+  <symbol id="n-beam" viewBox="0 0 48 48"><ellipse cx="11" cy="38" rx="7" ry="5" transform="rotate(-22 11 38)" fill="currentColor"/><ellipse cx="36" cy="33" rx="7" ry="5" transform="rotate(-22 36 33)" fill="currentColor"/><rect x="16.6" y="8" width="2.4" height="30" fill="currentColor"/><rect x="41.4" y="3" width="2.4" height="30" fill="currentColor"/><path d="M16.6 8 L43.8 3 V10 L16.6 15Z" fill="currentColor"/></symbol>
+  <symbol id="n-sharp" viewBox="0 0 48 48"><rect x="17" y="6" width="2.4" height="34" fill="currentColor"/><rect x="28" y="4" width="2.4" height="34" fill="currentColor"/><path d="M12 19 L35 13 V19 L12 25Z M12 31 L35 25 V31 L12 37Z" fill="currentColor"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home"><img src="img/logo.png" alt="" width="40" height="40"><span class="gold-text">DMC Chorus</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#journey">Our Journey</a></li>
+        <li><a href="#music">Music</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<main id="viewHome">
+<section class="hero" id="home">
+  <div class="hero-media"><img class="hero-img" src="img/hero.jpg" alt="DMC Chorus in barong and red gowns on stage, holding award plaques"></div>
+  <div class="notes" aria-hidden="true">
+    <svg class="n n1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#note"/></svg>
+    <svg class="n n2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#note"/></svg>
+    <svg class="n n3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#note"/></svg>
+    <svg class="n n4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#note"/></svg>
+  </div>
+  <div class="wrap hero-inner">
+    <img class="hero-logo" src="img/logo.png" alt="DMC Chorus logo" width="58" height="58">
+    <div class="wordmark">
+      <h1 aria-label="DMC Chorus"><span class="wm-dmc">DMC</span><span class="wm-chorus" aria-hidden="true"><i style="--k:0">C</i><i style="--k:1">H</i><i style="--k:2">O</i><i style="--k:3">R</i><i style="--k:4">U</i><i style="--k:5">S</i></span></h1>
+      <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+      <p class="wm-tag">Doing More for Christ</p>
+    </div>
+    <p class="hero-copy"><strong>Singing with faith. Serving with purpose.</strong><em>A church choir united by music, devotion, and a desire to serve God and His Church.</em></p>
+    <a class="btn" href="#journey">Discover our journey <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="band about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">About Us</p>
+      <h2>DMC Chorus</h2>
+      <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+      <p>DMC Chorus is a church choir dedicated to sacred music and the celebration of faith through song. Rooted in our devotion to the Santo Niño, we serve the Church and community through music, worship, and fellowship.</p>
+      <p>We come together not only to sing, but to serve by enriching liturgical celebrations, inspiring the faithful, and sharing the joy of music with others.</p>
+      <p>Guided by faith, friendship, and a shared love for music, we continue to grow as a community committed to serving God and others, always striving to live out our mission of <em>Doing More for Christ</em>.</p>
+    </div>
+    <div class="frame">
+      <div class="frame-in"><img src="img/about.jpg" alt="DMC Chorus members in matching shirts in front of the Basilica Minore del Santo Niño de Cebu"></div>
+      <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+    </div>
+  </div>
+</section>
+
+<section class="band band-dark" id="journey">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title gold-text">Our Journey</h2>
+      <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+    </div>
+    <ul class="journey-grid">
+      <li>
+        <span class="badge"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M19 35V12L37 8v23"/><circle pathLength="1" cx="14" cy="35" r="5"/><circle pathLength="1" cx="32" cy="31" r="5"/></svg></span>
+        <h3 class="gold-text">Choral<br>Ministry</h3>
+        <p>We use our voices to worship, inspire, and bring people closer to God.</p>
+      </li>
+      <li>
+        <span class="badge"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M16 8h16v10a8 8 0 0 1-16 0V8z"/><path pathLength="1" d="M16 12H9v3a6 6 0 0 0 7 6"/><path pathLength="1" d="M32 12h7v3a6 6 0 0 1-7 6"/><path pathLength="1" d="M24 26v8"/><path pathLength="1" d="M19 34h10v6H19z"/><path pathLength="1" d="M15 40h18"/></svg></span>
+        <h3 class="gold-text">3rd Place<br>13th Huniño 2023</h3>
+        <p>Honored to be awarded 3rd Place among 12 finalists.</p>
+      </li>
+      <li>
+        <span class="badge"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M7 17l9 8 8-13 8 13 9-8-4 21H11L7 17z"/><path pathLength="1" d="M11 43h26"/></svg></span>
+        <h3 class="gold-text">Santo Niño<br>Ang Pan sa Kinabuhi</h3>
+        <p>Our official entry in the 13th Huniño, composed by Russel Mathew Estaño with lyrics by Jezrael Robert Inoc.</p>
+      </li>
+      <li>
+        <span class="badge"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M24 6v6"/><path pathLength="1" d="M21 9h6"/><path pathLength="1" d="M24 12l15 13v17H9V25l15-13z"/><path pathLength="1" d="M20 42V33a4 4 0 0 1 8 0v9"/></svg></span>
+        <h3 class="gold-text">Basilica<br>Services</h3>
+        <p>We have been blessed to serve at Masses and liturgical celebrations at the Basilica Minore del Santo Niño de Cebu.</p>
+      </li>
+      <li>
+        <span class="badge"><svg viewBox="0 0 48 48" aria-hidden="true"><path pathLength="1" d="M24 41S7 31 7 19a9 9 0 0 1 17-4 9 9 0 0 1 17 4c0 12-17 22-17 22z"/></svg></span>
+        <h3 class="gold-text">Faith. Music.<br>Community.</h3>
+        <p>We sing not just to be heard, but to serve, to uplift, and to unite.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="band music" id="music">
+  <div class="mnotes" aria-hidden="true"><svg class="note" style="--x:4%;--y:6%;--s:54px;--r:-12deg;--d:16s;--dl:0s;--o:0.17;--dx:-12px" viewBox="0 0 48 48"><use href="#n-eighth"/></svg><svg class="note" style="--x:89%;--y:5%;--s:72px;--r:10deg;--d:19s;--dl:-4s;--o:0.15;--dx:12px" viewBox="0 0 48 48"><use href="#n-beam"/></svg><svg class="note" style="--x:13%;--y:34%;--s:36px;--r:-6deg;--d:17s;--dl:-8s;--o:0.14;--dx:-12px" viewBox="0 0 48 48"><use href="#n-sharp"/></svg><svg class="note" style="--x:85%;--y:31%;--s:48px;--r:8deg;--d:15s;--dl:-3s;--o:0.16;--dx:12px" viewBox="0 0 48 48"><use href="#n-quarter"/></svg><svg class="note" style="--x:5%;--y:58%;--s:66px;--r:-8deg;--d:20s;--dl:-10s;--o:0.13;--dx:-12px" viewBox="0 0 48 48"><use href="#n-beam"/></svg><svg class="note" style="--x:92%;--y:57%;--s:52px;--r:12deg;--d:18s;--dl:-6s;--o:0.16;--dx:12px" viewBox="0 0 48 48"><use href="#n-eighth"/></svg><svg class="note" style="--x:28%;--y:82%;--s:34px;--r:8deg;--d:16s;--dl:-2s;--o:0.13;--dx:-12px" viewBox="0 0 48 48"><use href="#n-sharp"/></svg><svg class="note" style="--x:70%;--y:84%;--s:50px;--r:-10deg;--d:17s;--dl:-9s;--o:0.15;--dx:12px" viewBox="0 0 48 48"><use href="#n-quarter"/></svg><svg class="note" style="--x:47%;--y:3%;--s:42px;--r:6deg;--d:21s;--dl:-12s;--o:0.11;--dx:-12px" viewBox="0 0 48 48"><use href="#n-eighth"/></svg><svg class="note" style="--x:57%;--y:88%;--s:62px;--r:-6deg;--d:19s;--dl:-5s;--o:0.12;--dx:12px" viewBox="0 0 48 48"><use href="#n-beam"/></svg><svg class="note" style="--x:21%;--y:10%;--s:40px;--r:14deg;--d:18s;--dl:-7s;--o:0.12;--dx:-12px" viewBox="0 0 48 48"><use href="#n-quarter"/></svg><svg class="note" style="--x:76%;--y:9%;--s:32px;--r:-10deg;--d:16s;--dl:-1s;--o:0.13;--dx:12px" viewBox="0 0 48 48"><use href="#n-sharp"/></svg><svg class="note" style="--x:39%;--y:90%;--s:46px;--r:-12deg;--d:20s;--dl:-11s;--o:0.13;--dx:-12px" viewBox="0 0 48 48"><use href="#n-eighth"/></svg><svg class="note" style="--x:95%;--y:80%;--s:54px;--r:6deg;--d:17s;--dl:-13s;--o:0.11;--dx:12px" viewBox="0 0 48 48"><use href="#n-beam"/></svg></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Featured Music</h2>
+      <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+    </div>
+    <div class="music-grid">
+      <article class="track">
+        <a class="track-media" href="https://www.youtube.com/watch?v=AgFfFpmjlz8" target="_blank" rel="noopener" aria-label="Watch Santo Niño Ang Pan Sa Kinabuhi on YouTube">
+          <img class="track-photo" src="img/t1.jpg" alt="" loading="lazy">
+          <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span>
+          <span class="tag">13th Huniño</span>
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </a>
+        <h3>Santo Niño Ang Pan Sa Kinabuhi, 13th Huniño</h3>
+        <p class="credits"><b>Composer:</b> Russel Mathew Estaño<br><b>Lyricist:</b> Jezrael Robert Inoc</p>
+        <a class="link-gold" href="https://www.youtube.com/watch?v=AgFfFpmjlz8" target="_blank" rel="noopener">Watch on YouTube</a>
+      </article>
+      <article class="track">
+        <a class="track-media" href="https://www.facebook.com/reel/1038779222318908" target="_blank" rel="noopener" aria-label="Watch Agaka Kami, Maria on Facebook">
+          <img class="track-photo" src="img/t2.jpg" alt="" loading="lazy">
+          <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span>
+          <span class="tag">33rd OMSF 2018</span>
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </a>
+        <h3>Agaka Kami, Maria, 33rd OMSF 2018</h3>
+        <p class="credits"><b>Composer:</b> Russel Mathew Estaño<br><b>Lyricist:</b> Jezrael Robert Inoc</p>
+        <a class="link-gold" href="https://www.facebook.com/reel/1038779222318908" target="_blank" rel="noopener">Watch on Facebook</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band band-dark" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title gold-text">Services</h2>
+      <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+    </div>
+    <div class="service-grid">
+      <article class="service">
+        <div class="ph"><img src="img/mass.jpg" alt="DMC Chorus beside the altar with the image of Our Lady of Fatima" loading="lazy"></div>
+        <h3 class="gold-text">Mass Services</h3>
+        <p>Sung liturgy for Sunday and weekday Masses, feast days, and parish celebrations.</p>
+      </article>
+      <article class="service">
+        <div class="ph"><img src="img/wedding.jpg" alt="DMC Chorus with a wedding party at a garden chapel" loading="lazy"></div>
+        <h3 class="gold-text">Weddings</h3>
+        <p>Music that carries the vows, from the processional to the recessional.</p>
+      </article>
+      <article class="service">
+        <div class="ph"><img src="img/wake.jpg" alt="DMC Chorus members gathered for a wake service" loading="lazy"></div>
+        <h3 class="gold-text">Wake Services</h3>
+        <p>Hymns of comfort and prayer for families in mourning.</p>
+      </article>
+    </div>
+    <div class="services-cta"><a class="btn" href="#contact">Inquire now <span aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+
+<section class="band gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title">Gallery</h2>
+      <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+    </div>
+    <div class="gallery-grid" id="homeGrid"></div>
+    <div class="more"><a class="btn btn-dark" href="#all-photos" id="seeMore">See more photos <span aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+</main>
+
+<main id="viewPhotos" hidden>
+  <section class="band photos-page">
+    <div class="wrap">
+      <a class="back" href="#gallery"><span aria-hidden="true">←</span> Back to home</a>
+      <div class="sec-head">
+        <h1 class="sec-title">Photo Gallery</h1>
+        <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+      </div>
+      <div class="masonry" id="allGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="img/logo.png" alt="DMC Chorus logo" width="104" height="104" loading="lazy">
+        <div class="wordmark sm">
+          <div class="wm-dmc" role="img" aria-label="DMC Chorus">DMC</div>
+          <div class="wm-chorus" aria-hidden="true"><i>C</i><i>H</i><i>O</i><i>R</i><i>U</i><i>S</i></div>
+          <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+          <p class="wm-tag">Doing More for Christ</p>
+          <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4 class="gold-text">Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#journey">Our Journey</a></li>
+          <li><a href="#music">Music</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4 class="gold-text">Book DMC Chorus</h4>
+        <p>For Masses, Weddings, Wake Services, and other engagements.</p>
+        <a class="btn" href="mailto:dmcchorus.cebu@gmail.com?subject=DMC%20Chorus%20inquiry">Inquire now <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="foot-col">
+        <h4 class="gold-text">Connect With Us</h4>
+        <p>Let's create harmony together. Let's glorify God through music.</p>
+        <p style="margin:0 0 .8rem">Cebu City, Philippines</p>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=AgFfFpmjlz8" target="_blank" rel="noopener">Watch on YouTube</a></li>
+          <li><a href="https://www.facebook.com/reel/1038779222318908" target="_blank" rel="noopener">Watch on Facebook</a></li>
+        </ul>
+        <div class="addr">
+          <code id="emailText">dmcchorus.cebu@gmail.com</code>
+          <button class="copy" type="button" id="copyBtn">Copy</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="div" aria-hidden="true"><i></i><svg><use href="#orn-c"/></svg><i></i></div>
+      <p>© 2026 DMC Chorus. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb-x" id="lbX" type="button" aria-label="Close">×</button>
+  <button class="lb-prev" id="lbPrev" type="button" aria-label="Previous photo">‹</button>
+  <figure><img id="lbImg" alt="DMC Chorus photo"><div class="lb-count" id="lbCount"></div></figure>
+  <button class="lb-next" id="lbNext" type="button" aria-label="Next photo">›</button>
+</div>
+
+<script>
+(function () {
+  // id, thumbnail width, thumbnail height, shown on the home page
+  var PHOTOS = [["o01",640,368,1],["o02",640,360,1],["o03",640,480,1],["o04",640,452,0],["o05",640,360,1],["o06",640,360,1],["o07",640,360,0],["o08",640,449,1],["o09",640,452,0],["o10",640,480,0],["o11",640,360,0],["o12",640,360,0],["o13",640,360,0],["o14",640,360,0],["o15",640,360,0],["o16",560,995,0],["n01",640,360,0],["n02",560,996,0],["n03",640,360,0],["n04",560,995,0],["n05",640,360,0],["n06",640,360,0],["n07",640,480,0],["n08",560,996,0],["n09",560,996,0],["n10",640,360,0],["n11",640,480,0]];
+
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- nav
+  var btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  btn.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+  });
+
+  // ---- scroll progress and hero parallax
+  var bar = document.getElementById('progress'), heroEl = document.querySelector('.hero'), ticking = false;
+  function onScroll() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')';
+    if (!calm && !document.getElementById('viewHome').hidden) {
+      heroEl.style.setProperty('--py', (Math.min(window.scrollY, 900) * 0.08).toFixed(1) + 'px');
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  // ---- reveal on scroll (content is visible by default; only below-the-fold items ease in)
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.remove('pre'); io.unobserve(en.target); } });
+  }, { threshold: 0.15 }) : null;
+  function reveal(root) {
+    if (calm || !io) return;
+    var els = root.querySelectorAll('.sec-head,.about-grid > *,.frame,.journey-grid li,.track,.service,.services-cta,.shot,.more,.foot-col,.foot-brand');
+    Array.prototype.forEach.call(els, function (el) {
+      el.classList.add('rv');
+      if (el.matches('.shot,.service,.frame')) el.classList.add('mk');
+      el.style.setProperty('--i', String(Array.prototype.indexOf.call(el.parentNode.children, el) % 6));
+      if (el.getBoundingClientRect().top > window.innerHeight * 0.9) { el.classList.add('pre'); io.observe(el); }
+    });
+    setTimeout(function () { Array.prototype.forEach.call(root.querySelectorAll('.pre'), function (el) { el.classList.remove('pre'); }); }, 7000);
+  }
+
+  // ---- galleries (thumbnails in the grids, larger files in the viewer)
+  function mkShot(p) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'shot'; b.dataset.full = 'img/f/' + p[0] + '.jpg';
+    var im = new Image(); im.src = 'img/t/' + p[0] + '.jpg'; im.alt = 'DMC Chorus photo'; im.width = p[1]; im.height = p[2]; im.loading = 'lazy'; im.decoding = 'async';
+    b.appendChild(im); return b;
+  }
+  var homeGrid = document.getElementById('homeGrid'), allGrid = document.getElementById('allGrid');
+  PHOTOS.forEach(function (p) { if (p[3]) homeGrid.appendChild(mkShot(p)); });
+
+  // ---- lightbox
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCount = document.getElementById('lbCount');
+  var list = [], cur = 0, opener = null;
+  function show(i) {
+    cur = (i + list.length) % list.length;
+    lbImg.src = list[cur].dataset.full; lbCount.textContent = (cur + 1) + ' / ' + list.length;
+  }
+  function openLb(grid, shot) {
+    list = Array.prototype.slice.call(grid.querySelectorAll('.shot')); opener = shot;
+    show(list.indexOf(shot)); lb.hidden = false; document.body.style.overflow = 'hidden'; document.getElementById('lbX').focus();
+  }
+  function closeLb() { lb.hidden = true; document.body.style.overflow = ''; if (opener) opener.focus(); }
+  [homeGrid, allGrid].forEach(function (g) {
+    g.addEventListener('click', function (e) { var s = e.target.closest('.shot'); if (s) openLb(g, s); });
+  });
+  document.getElementById('lbX').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', function () { show(cur - 1); });
+  document.getElementById('lbNext').addEventListener('click', function () { show(cur + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb(); else if (e.key === 'ArrowLeft') show(cur - 1); else if (e.key === 'ArrowRight') show(cur + 1);
+  });
+  var tx = null;
+  lb.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+  });
+
+  // ---- views: home and #all-photos
+  var home = document.getElementById('viewHome'), photos = document.getElementById('viewPhotos');
+  var homeReady = false, photosReady = false;
+  function replay(el) { el.classList.remove('view-in'); void el.offsetWidth; if (!calm) el.classList.add('view-in'); }
+  function showHome(target) {
+    var was = home.hidden;
+    photos.hidden = true; home.hidden = false;
+    if (!homeReady) { homeReady = true; reveal(home); }
+    if (was) {
+      replay(home);
+      var el = target && document.getElementById(target);
+      if (el) el.scrollIntoView({ behavior: 'instant' }); else window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }
+  function showPhotos() {
+    home.hidden = true; photos.hidden = false;
+    if (!photosReady) {
+      photosReady = true;
+      PHOTOS.forEach(function (p) { allGrid.appendChild(mkShot(p)); });
+    }
+    replay(photos); window.scrollTo({ top: 0, behavior: 'instant' });
+    if (!photos.dataset.rv) { photos.dataset.rv = '1'; reveal(photos); }
+  }
+  function route() {
+    var h = ''; try { h = decodeURIComponent(location.hash.slice(1)); } catch (err) { h = ''; }
+    if (h === 'contact' && !photos.hidden) return;
+    if (h === 'all-photos') showPhotos(); else showHome(h);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  // ---- copy email
+  var copyBtn = document.getElementById('copyBtn'), emailEl = document.getElementById('emailText');
+  function selectText() { var r = document.createRange(); r.selectNodeContents(emailEl); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+  function flash(msg) { copyBtn.textContent = msg; setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1800); }
+  copyBtn.addEventListener('click', function () {
+    var text = emailEl.textContent;
+    try { navigator.clipboard.writeText(text).then(function () { flash('Copied'); }, function () { selectText(); flash('Press Ctrl+C'); }); }
+    catch (err) { selectText(); flash('Press Ctrl+C'); }
+  });
+})();
+</script>
+
+</body></html>
